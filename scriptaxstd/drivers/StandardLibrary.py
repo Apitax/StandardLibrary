@@ -1,13 +1,12 @@
 from apitax.ah.flow.responses.ApitaxResponse import ApitaxResponse
 from apitax.ah.models.Command import Command
 from apitax.drivers.Driver import Driver
+from scriptax.drivers.Scriptax import Scriptax
+from scriptaxstd.flow.Delegator import Delegator
 
 
-class Api(Driver):
+class Api(Scriptax):
     def isDriverCommandable(self) -> bool:
-        return True
-        
-    def isDriverScriptable(self) -> bool:
         return True
 
     def getDriverName(self) -> str:
@@ -23,7 +22,13 @@ class Api(Driver):
         return 'coming soon'
 
     def handleDriverCommand(self, command: Command) -> ApitaxResponse:
-        return ApitaxResponse()
-
-    def handleDriverScript(self, command: Command) -> ApitaxResponse:
-        return ApitaxResponse()
+        delegator = Delegator(command)
+        result = delegator.delegate()
+        response = ApitaxResponse()
+        response.body.add({'result': result})
+        if (not result):
+            response.status = 500
+        else:
+            response.status = 200
+        return response
+        
