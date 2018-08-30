@@ -1,2 +1,5 @@
 
-// substring etc.
+script substr(start=0, length)
+{
+  
+}
