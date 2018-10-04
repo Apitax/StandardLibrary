@@ -1,5 +1,4 @@
 
-
 class String:
-    def substring(self, text, start, length):
-        return text[start:length]
+    def substr(self, text=None, start=None, length=None):
+        return text[int(start):int(length)]

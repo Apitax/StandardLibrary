@@ -1,5 +1,5 @@
 
-script substr(start=0, length)
+script substr(text, start=0, length)
 {
-  
+  return ct("std string substr " + text + " --start " + start + " --length " + length);
 }

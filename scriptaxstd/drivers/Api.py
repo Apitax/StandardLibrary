@@ -1,8 +1,7 @@
-from apitax.ah.builders.HeaderBuilder import HeaderBuilder
-from apitax.ah.flow.responses.ApitaxResponse import ApitaxResponse
-from apitax.ah.models.Command import Command
-from apitax.drivers.Driver import Driver
-from apitax.ah.models.State import State
+from apitaxcore.builders.HeaderBuilder import HeaderBuilder
+from apitaxcore.flow.responses.ApitaxResponse import ApitaxResponse
+from commandtax.models.Command import Command
+from scriptax.drivers.Driver import Driver
 import json
 
 
@@ -23,10 +22,10 @@ class Api(Driver):
         return 'I recommend this website for reading json data: http://json.parser.online.fr/'
 
     def handleDriverCommand(self, command: Command) -> ApitaxResponse:
+        response: ApitaxResponse = ApitaxResponse()
 
-        if ('--url' not in command.command):
-            State.log.error('--url parameter is required for api commands and is not found')
-            return None
+        if '--url' not in command.command:
+            return response.res_server_error(body='--url parameter is required for api commands and is not found')
 
         url = command.command[command.command.index('--url') + 1]
         command.request.preEndpoint = url
@@ -36,45 +35,44 @@ class Api(Driver):
         pathData = ''  # Data contained in the URL
         headerData = ''  # Data contained in the headers
 
-        if ('--data-post' in command.command):
+        if '--data-post' in command.command:
             postData = command.command[command.command.index('--data-post') + 1]
 
-        if ('--data-query' in command.command):
+        if '--data-query' in command.command:
             paramData = command.command[command.command.index('--data-query') + 1]
 
-        if ('--data-path' in command.command):
+        if '--data-path' in command.command:
             pathData = command.command[command.command.index('--data-path') + 1]
 
-        if ('--data-header' in command.command):
+        if '--data-header' in command.command:
             headerData = command.command[command.command.index('--data-header') + 1]
 
-        if (postData != ''):
+        if postData != '':
             command.request.bodyBuilder.add(json.loads(str(postData)))
 
-        if (paramData != ''):
+        if paramData != '':
             command.request.queryBuilder.add(json.loads(str(paramData)))
 
-        if (pathData != ''):
+        if pathData != '':
             command.request.path = json.loads(str(pathData))
 
-        if (headerData != ''):
+        if headerData != '':
             command.request.headerBuilder.add(json.loads(str(headerData)))
 
         command.request.requestFormat = self.getApiFormat()
 
-        if ('--get' in command.command):
+        if '--get' in command.command:
             command.request.get()
-        elif ('--post' in command.command):
+        elif '--post' in command.command:
             command.request.post()
-        elif ('--put' in command.command):
+        elif '--put' in command.command:
             command.request.put()
-        elif ('--patch' in command.command):
+        elif '--patch' in command.command:
             command.request.patch()
-        elif ('--delete' in command.command):
+        elif '--delete' in command.command:
             command.request.delete()
         else:
-            State.log.error('No API request method specified')
-            return None
+            return response.res_server_error(body='No API request method specified')
 
         return command.request.getResponse()
 

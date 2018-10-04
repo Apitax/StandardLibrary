@@ -1,5 +1,5 @@
-from apitax.ah.builders.HeaderBuilder import HeaderBuilder
-from apitax.drivers.builtin.Api import Api
+from apitaxcore.builders.HeaderBuilder import HeaderBuilder
+from scriptaxstd.drivers.Api import Api
 
 
 class ApiXml(Api):

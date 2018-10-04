@@ -1,11 +1,10 @@
-from apitax.ah.flow.responses.ApitaxResponse import ApitaxResponse
-from apitax.ah.models.Command import Command
-from apitax.drivers.Driver import Driver
-from scriptax.drivers.Scriptax import Scriptax
+from apitaxcore.flow.responses.ApitaxResponse import ApitaxResponse
+from commandtax.models.Command import Command
+from scriptax.drivers.builtin.Scriptax import Scriptax
 from scriptaxstd.flow.Delegator import Delegator
 
 
-class Api(Scriptax):
+class StandardLibrary(Scriptax):
     def isDriverCommandable(self) -> bool:
         return True
 
@@ -25,10 +24,9 @@ class Api(Scriptax):
         delegator = Delegator(command)
         result = delegator.delegate()
         response = ApitaxResponse()
-        response.body.add({'result': result})
-        if (not result):
+        if not result:
             response.status = 500
         else:
+            response.body.add({'result': result})
             response.status = 200
         return response
-        
