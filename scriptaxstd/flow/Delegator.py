@@ -14,6 +14,7 @@ class Delegator:
         parameters = {}
 
         i = 0
+
         while len(command) > i:
             parameter = command[i]
 
