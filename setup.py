@@ -22,7 +22,7 @@ setup(
     install_requires=[
         'click',
         'apitaxcore==3.0.6',
-        'commanndtax==0.0.8',
+        'commandtax==0.0.8',
         'scriptax==0.0.4',
     ],
 )
