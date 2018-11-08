@@ -21,27 +21,84 @@ class RestApi:
 
         return command
 
-    def get(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+    # Arbitrary JSON API Calls
+
+    def jget(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = 'api --get ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
         c = Connector(command=command)
         return c.execute().getResponseBody()
 
-    def post(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+    def jpost(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = 'api --post ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
         c = Connector(command=command)
         return c.execute().getResponseBody()
 
-    def put(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+    def jput(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = 'api --put ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
         c = Connector(command=command)
         return c.execute().getResponseBody()
 
-    def patch(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+    def jpatch(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = 'api --patch ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
         c = Connector(command=command)
         return c.execute().getResponseBody()
 
-    def delete(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+    def jdelete(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = 'api --delete ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
         c = Connector(command=command)
         return c.execute().getResponseBody()
+
+    # Arbitrary XML API Calls
+
+    def xget(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = 'apixml --get ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def xpost(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = 'apixml --post ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def xput(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = 'apixml --put ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def xpatch(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = 'apixml --patch ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def xdelete(self, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = 'apixml --delete ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    # Arbitrary XML API Calls
+
+    def dget(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = apiDriver + ' --get ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def dpost(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = apiDriver + ' --post ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def dput(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = apiDriver + ' --put ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def dpatch(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = apiDriver + ' --patch ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+
+    def ddelete(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
+        command = apiDriver + ' --delete ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        c = Connector(command=command)
+        return c.execute().getResponseBody()
+

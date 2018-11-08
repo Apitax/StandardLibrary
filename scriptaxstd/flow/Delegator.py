@@ -52,6 +52,9 @@ class Delegator:
         elif lib == 'restapi':
             from scriptaxstd.flow.Restapi import RestApi
             instance = RestApi()
+        elif lib == 'json':
+            from scriptaxstd.flow.Json import Json
+            instance = Json()
 
 
         if not instance:

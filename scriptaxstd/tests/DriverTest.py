@@ -31,11 +31,13 @@ LoadedDrivers.load("api")
 LoadedDrivers.load("apixml")
 
 #scriptax = "from std import String as stdstr; log(stdstr.substr(text='this_is_some_fantastic_text', start=3, length=10));"
-scriptax = "from std import Map as map; mymap = new map(); mymap.map.test = 'wtf'; mymap.map.bob = 'yes'; mymap.map.shawn = {'noway': 'yesway'}; log(mymap.has(key='noway', sMap=mymap.map.shawn)); return 'test complete';"
+#scriptax = "from std import Map as map; mymap = new map(); mymap.map.test = 'wtf'; mymap.map.bob = 'yes'; mymap.map.shawn = {'noway': 'yesway'}; log(mymap.has(key='noway', sMap=mymap.map.shawn)); return 'test complete';"
 #scriptax = "from std import Restapi as stdapi; mydata = {}; mydata.title = 'awesome'; mydata.body='shawn is'; mydata.id=5; log(stdapi.jget(endp='https://jsonplaceholder.typicode.com/posts')); log(stdapi.jpost(endp='https://jsonplaceholder.typicode.com/posts', dataPost=mydata)); return 'test complete';"
 #scriptax = "from std import Restapi as stdapi; mydata = {}; mydata.title = 'awesome'; mydata.body='shawn is'; mydata.id=555; log(stdapi.jpost(endp='https://jsonplaceholder.typicode.com/posts', dataPost=mydata)); return 'test complete';"
+scriptax = "from std import Restapi(debug=true) as stdapi; mydata = {}; mydata.title = 'awesome'; mydata.body='shawn is'; mydata.id=555; log(stdapi.dpost(driver='api',endp='https://jsonplaceholder.typicode.com/posts', dataPost=mydata)); return 'test complete';"
+#scriptax = "from std import Json as stdjson; mydata = {}; mydata.title = 'awesome'; mydata.body='shawn is'; mydata.id=555; log(mydata); log(stdjson.toJson(obj=mydata)); log(ct('api --url https://jsonplaceholder.typicode.com/posts --post --data-post \\\'' + stdjson.toJson(obj=mydata) + '\\\''));"
 
-visitor = customizableParser(scriptax, file='inline_program', options=Options(debug=False))
+visitor = customizableParser(scriptax, file='inline_program', options=Options(debug=True))
 
 print('Return: ' + str(visitor[0][1]))
 print()
