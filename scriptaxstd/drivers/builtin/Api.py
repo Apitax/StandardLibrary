@@ -60,6 +60,7 @@ class Api(Driver):
             command.request.headerBuilder.add(json.loads(str(headerData)))
 
         command.request.requestFormat = self.getApiFormat()
+        self.addApiHeaders(command.request.headerBuilder)
 
         if '--get' in command.command:
             command.request.get()

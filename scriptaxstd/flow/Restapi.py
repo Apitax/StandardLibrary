@@ -84,6 +84,7 @@ class RestApi:
 
     def dpost(self, apiDriver, url, dataPost=None, dataHeader=None, dataQuery=None, dataPath=None):
         command = apiDriver + ' --post ' + self.makeCmd(url, dataPost, dataHeader, dataQuery, dataPath)
+        print(command)
         c = Connector(command=command)
         return c.execute().getResponseBody()
 
