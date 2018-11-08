@@ -22,15 +22,15 @@ class StandardLibrary(Scriptax):
         return 'coming soon'
 
     def handleDriverCommand(self, command: Command) -> ApitaxResponse:
-        delegator = Delegator(command)
-        result = delegator.delegate()
         response = ApitaxResponse()
-        if not result:
-            response.status = 500
-        else:
+        try:
+            delegator = Delegator(command)
+            result = delegator.delegate()
             response.body.add({'result': result})
             response.status = 200
-        return response
+            return response
+        except:
+            return response.res_server_error(body={"message": "StandardLibrary@HandleDriverCommand exception."})
 
     def getDriverScript(self, path) -> str:
         path = getPath(__file__ + '/../../../scriptax/' + path)

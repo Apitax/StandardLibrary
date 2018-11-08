@@ -46,6 +46,13 @@ class Delegator:
         elif lib == 'binary':
             from scriptaxstd.flow.Binary import Binary
             instance = Binary()
+        elif lib == 'map':
+            from scriptaxstd.flow.Map import Map
+            instance = Map()
+        elif lib == 'restapi':
+            from scriptaxstd.flow.Restapi import RestApi
+            instance = RestApi()
+
 
         if not instance:
             print('INVALID LIBRARY')
