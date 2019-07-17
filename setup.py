@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='scriptaxstd',
     packages=find_packages(),
-    version='0.0.11',
+    version='0.0.12',
     description='The Standard Library is a driver which provides lots of additional functionality to complement the Scriptax driver.',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -23,6 +23,6 @@ setup(
         'click',
         'apitaxcore==3.0.9',
         'commandtax==0.0.8',
-        'scriptax==0.0.5',
+        'scriptax==4.0.1',
     ],
 )
